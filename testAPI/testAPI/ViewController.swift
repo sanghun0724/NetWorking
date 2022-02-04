@@ -84,9 +84,9 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
+    //https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V
     func testTrack() {
-        var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V")!)
+        var request = URLRequest(url: URL(string: "https://api.spotify.com/v1/browse/new-releases")!)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") // 띄어쓰기 ,...fuck
         request.httpMethod = "GET"
         request.timeoutInterval = 30
