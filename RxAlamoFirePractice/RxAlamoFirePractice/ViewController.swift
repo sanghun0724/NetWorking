@@ -41,6 +41,8 @@ class ViewController: UIViewController {
         setupUI()
         
         setupBinding()
+        
+        api.postTest()
     }
     
     override func viewDidLayoutSubviews() {

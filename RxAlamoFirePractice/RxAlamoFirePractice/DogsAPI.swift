@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxAlamofire
 import RxDataSources
-import SwiftUI
 
 
 struct Weight :Equatable, Codable {
@@ -105,7 +104,41 @@ class DogsAPI {
                 }
             
         }).disposed(by: disposeBag)
-        
-        
     }
+    
+    
+    
+    let username = "gracia"
+    let password = "1234"
+    public func postTest() {
+        let url = "https://ptsv2.com/t/stwtx-1644057177/post"
+        //let header:HTTPHeaders = ["Content-Type":"applicatoin/json"]
+        
+        var request = URLRequest(url:URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+        //post로 보낼정보
+        let params:[String:Any] = [
+            "name":username,
+            "password":password
+        ]
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http body error")
+        }
+        
+        RxAlamofire.request(request).response()
+            .subscribe(onNext: { respone in
+                if respone.statusCode < 500 {
+                    print("good")
+                }
+            
+            
+        }).disposed(by: disposeBag)
+        
+      }
 }
